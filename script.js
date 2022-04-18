@@ -15,7 +15,7 @@ function login() {
     function connected(response) {
         console.log(response.status);
     }
-    
+
     function connectFail(error) {
         if (error.response.status === 400) {
             alert("Usuário já existente. Escolha um nome diferente");
@@ -26,8 +26,8 @@ function login() {
 setInterval(stayConnected, 3000);
 setInterval(loadMsg, 3000);
 
-function stayConnected(){
-        const promiseStay = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', username);
+function stayConnected() {
+    const promiseStay = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', username);
 }
 
 function loadMsg() {
@@ -46,18 +46,40 @@ function renderMsg() {
     ulMessages.innerHTML = "";
 
     for (let i = 0; i < messages.length; i++) {
-        ulMessages.innerHTML += `
-        <li class="normal">
+        if (messages[i].type === "status") {
+            ulMessages.innerHTML += `
+            <li class="status">
+            <span class="time">(${messages[i].time})</span>
+            <span class="from"><strong>${messages[i].from}</strong></span>
+            <span class="text">${messages[i].text}</span>
+            </li>   
+            `;
+        }
+        else if (messages[i].type === "message") {
+            ulMessages.innerHTML += `
+            <li class="normal">
+            <span class="time">(${messages[i].time})</span>
+            <span class="from"><strong>${messages[i].from}</strong></span>
+            <span>para</span>
+            <span class="to"><strong>${messages[i].to}:</strong></span>
+            <span class="text">${messages[i].text}</span>
+           </li>
+            `;
+        }
+        else if ((messages[i].type === "private_message") && (messages[i].to === username.name)) {
+            ulMessages.innerHTML += `
+        <li class="reserved">
         <span class="time">(${messages[i].time})</span>
-        <span class="from"><strong>${messages[i].from}</strong></span>
-        <span>para</span>
-        <span class="to"><strong>${messages[i].to}:</strong></span>
-        <span class="text">${messages[i].text}</span>
-       </li>
-        `;
+            <span class="from"><strong>${messages[i].from}</strong></span>
+            <span>reservadamente para</span>
+            <span class="to"><strong>${messages[i].to}:</strong></span>
+            <span class="text">${messages[i].text}</span>
+           </li>
+            `;
+        }
     }
     let lastMsg = ulMessages.lastChild;
-    lastMsg.scrollIntoView();
+    lastMsg[i].scrollIntoView();
 }
 
 function treatError(error) {
@@ -76,8 +98,8 @@ function sendMsg() {
     promiseSend.then(sendMsgSuccess);
     promiseSend.catch(treatError);
 
-    function sendMsgSuccess(response){
+    function sendMsgSuccess(response) {
         console.log(response);
+        loadMsg();
     }
 }
-

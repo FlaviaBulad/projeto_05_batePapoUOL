@@ -4,8 +4,9 @@
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
-.strong {
+strong {
   font-style: bold;
+  font-weight: 700;
 }
 
 .layout {
@@ -20,6 +21,7 @@
     / 1fr;
   gap: 8px;
 }
+
 
 .header {
   grid-area: header;
@@ -46,19 +48,17 @@
 }
 .main {
   grid-area: main;
-
   background-color:#F3F3F3;
 }
 
-span {
-text-align: center;
-}
 li {
   width: 375px;
-  height: 40px;
-  margin-top:3px;
+  min-height: 40px;
+  margin-top:1px;
   background-color: #FFFFFF;
   word-wrap: break-word;
+  overflow-y: hidden;
+  padding-top:10px;
 }
 .time {
   color: #AAAAAA;
