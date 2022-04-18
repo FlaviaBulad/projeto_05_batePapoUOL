@@ -4,6 +4,9 @@
   box-sizing: border-box;
   font-family: "Roboto", sans-serif;
 }
+.strong {
+  font-style: bold;
+}
 
 .layout {
   width: 375px;
@@ -44,13 +47,21 @@
 .main {
   grid-area: main;
 
-  background: #e5e5e5;
+  background-color:#F3F3F3;
 }
 
-.chat {
+span {
+text-align: center;
+}
+li {
   width: 375px;
   height: 40px;
-  border-radius: 2px;
+  margin-top:3px;
+  background-color: #FFFFFF;
+  word-wrap: break-word;
+}
+.time {
+  color: #AAAAAA;
 }
 .status {
   background: #dcdcdc;
@@ -80,8 +91,16 @@
 .footer ion-icon {
   font-size: 26px;
 }
-.footer p {
+ion-icon:hover{
+  color:gray;
+  cursor:pointer;
+}
+.footer input {
   font-style: italic;
   font-weight: 400;
   font-size: 18px;
+  padding: 0;
+  border: none;
+  background: none;
 }
+

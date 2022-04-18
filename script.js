@@ -1,1 +1,83 @@
-console.log("carreguei");
+let messages = []; //API messages
+let username = {};
+
+loadMsg();
+login();
+
+function login() {
+
+    username = { name: prompt("Digite seu nome de usuário") };
+    const promiseUser = axios.post('https://mock-api.driven.com.br/api/v6/uol/participants', username);
+
+    promiseUser.then(connected);
+    promiseUser.catch(connectFail);
+
+    function connected(response) {
+        console.log(response.status);
+    }
+    
+    function connectFail(error) {
+        if (error.response.status === 400) {
+            alert("Usuário já existente. Escolha um nome diferente");
+            login();
+        }
+    }
+}
+setInterval(stayConnected, 3000);
+setInterval(loadMsg, 3000);
+
+function stayConnected(){
+        const promiseStay = axios.post('https://mock-api.driven.com.br/api/v6/uol/status', username);
+}
+
+function loadMsg() {
+    const promise = axios.get('https://mock-api.driven.com.br/api/v6/uol/messages');
+    promise.then(callback);
+    promise.catch(treatError);
+
+    function callback(response) {
+        messages = response.data;
+        renderMsg();
+    }
+}
+
+function renderMsg() {
+    const ulMessages = document.querySelector(".chat");
+    ulMessages.innerHTML = "";
+
+    for (let i = 0; i < messages.length; i++) {
+        ulMessages.innerHTML += `
+        <li class="normal">
+        <span class="time">(${messages[i].time})</span>
+        <span class="from"><strong>${messages[i].from}</strong></span>
+        <span>para</span>
+        <span class="to"><strong>${messages[i].to}:</strong></span>
+        <span class="text">${messages[i].text}</span>
+       </li>
+        `;
+    }
+    let lastMsg = ulMessages.lastChild;
+    lastMsg.scrollIntoView();
+}
+
+function treatError(error) {
+    alert(`Error: ${error.response.status} ${error.response.data}`);
+}
+
+function sendMsg() {
+    let msgTemplate = {
+        from: username.name,
+        to: "Todos",
+        text: document.querySelector('input').value,
+        type: "message"
+    }
+
+    const promiseSend = axios.post('https://mock-api.driven.com.br/api/v6/uol/messages', msgTemplate);
+    promiseSend.then(sendMsgSuccess);
+    promiseSend.catch(treatError);
+
+    function sendMsgSuccess(response){
+        console.log(response);
+    }
+}
+
