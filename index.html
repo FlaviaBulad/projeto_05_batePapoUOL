@@ -13,6 +13,37 @@
 </head>
 
 <body>
+  <div class="overlay hidden">
+    <div class="menu hidden">
+      <div class="menu-content hidden">
+
+        <p class="menu-title"><strong>Escolha um contato para enviar mensagem:</strong></p>
+
+        <div class="todos">
+          <ion-icon name="people-sharp" onclick="sendToAll()"></ion-icon><strong>Todos</strong>
+        </div>
+
+        <div class="participants"></div>
+
+        <div class="visibility">
+          <p class="visibility-title"><strong>Escolha a Visibilidade:</strong></p>
+
+          <div class="public">
+            <ion-icon name="lock-open"></ion-icon> Público
+          </div>
+          <div class="private">
+            <ion-icon name="lock-closed"></ion-icon> Reservadamente
+          </div>
+
+        </div>
+        <!--chat visibility type-->
+      </div>
+      <!--menu content-->
+    </div>
+    <!--menu-->
+  </div>
+  <!--overlay-->
+
   <section class="layout">
     <div class="header">
       <img class="logo" src="images/logo.png" />

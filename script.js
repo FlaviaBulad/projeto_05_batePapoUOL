@@ -103,3 +103,8 @@ function sendMsg() {
         loadMsg();
     }
 }
+
+function openMenu() {
+
+    const removeHidden = document.querySelector(".overlay")
+}
