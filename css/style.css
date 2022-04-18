@@ -28,8 +28,8 @@ strong {
 
 .overlay{
   position: fixed; 
-  width: 100%; 
-  height: 100%; 
+  width: 375px; 
+  height: 800px; 
   top: 0;
   left: 0;
   right: 0;
@@ -37,17 +37,86 @@ strong {
   background-color: rgba(0, 0, 0, 0.44); 
   z-index: 2;
 }
-
+.overlay ion-icon{
+  font-size:20px;
+  margin-left:2px;
+}
 .menu {
   position: fixed; 
   width: 259px; 
-  height: 100%; 
+  height: 800px; 
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   background-color:#fff;
   z-index: 3;
+  margin-left:120px;
+}
+
+.menu-title{
+  padding-top:20px;
+  margin-bottom:20px;
+font-weight: 700;
+font-size: 16px;display: flex;
+align-items: center;
+text-align: center;
+color: #000000;
+}
+.everyone{
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  margin-bottom: 5px;
+}
+.everyone ion-icon{
+  font-size:20px;
+  margin-left:20px;
+}
+.everyone span{
+font-weight: 400;
+font-size: 16px;
+color: #000000;
+margin-left:10px;
+}
+.participants{
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  margin-bottom: 5px;
+
+}
+.participants span{
+  font-weight: 400;
+ font-size: 16px;
+ color: #000000;
+ margin-left:10px;
+}
+
+.participants ion-icon{
+    font-size:20px;
+    margin-left:20px;
+  }
+
+.visibility-title{
+font-weight: 400;
+font-size: 16px;
+color: #000000;
+margin-left:20px;
+margin-top:20px;
+margin-bottom: 20px;
+}
+
+.public, .private {
+  display: flex;
+  align-items: center;
+  padding-left: 10px;
+  margin-bottom: 5px;
+}
+
+.public ion-icon, .private ion-icon{
+  font-size:20px;
+  margin-left:20px;
 }
 
 .header {

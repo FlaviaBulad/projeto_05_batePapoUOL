@@ -1,5 +1,6 @@
 let messages = []; //API messages
 let username = {};
+let participants = {}; // API participants
 
 loadMsg();
 login();
@@ -106,5 +107,36 @@ function sendMsg() {
 
 function openMenu() {
 
-    const removeHidden = document.querySelector(".overlay")
+    const overlay = document.querySelector(".overlay");
+    overlay.classList.toggle("hidden");
+
+    const menu = document.querySelector(".menu");
+    menu.classList.toggle("hidden");
+
+    const menuContent = document.querySelector(".menu-content");
+    menuContent.classList.toggle("hidden");
+    renderParticipants();
 }
+
+function loadParticipants() {
+
+    const loadParticipants = axios.get('https://mock-api.driven.com.br/api/v6/uol/participants')
+    loadParticipants.then(renderParticipants);
+    loadParticipants.catch(treatError);
+
+    function renderParticipants() {
+
+        const renderParticipants = document.querySelector(".participants");
+        renderParticipants.innerHTML = "";
+
+        for (let i = 0; i < participants.length; i++) {
+            renderParticipants.innerHTML +=`
+            <div class="participants">
+            <ion-icon name="person-circle"></ion-icon>
+            <span>${participants[i].name}</span>
+            </div>`  
+    }
+}
+    }
+
+
