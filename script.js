@@ -1,6 +1,6 @@
 let messages = []; //API messages
 let username = {};
-let participants = {}; // API participants
+let participants = []; // API participants
 
 loadMsg();
 login();
@@ -115,28 +115,32 @@ function openMenu() {
 
     const menuContent = document.querySelector(".menu-content");
     menuContent.classList.toggle("hidden");
-    renderParticipants();
+    loadParticipants();
 }
 
 function loadParticipants() {
 
-    const loadParticipants = axios.get('https://mock-api.driven.com.br/api/v6/uol/participants')
-    loadParticipants.then(renderParticipants);
-    loadParticipants.catch(treatError);
+    const promiseLoadParticipants = axios.get('https://mock-api.driven.com.br/api/v6/uol/participants')
+    promiseLoadParticipants.then(callbackParticipants);
+    promiseLoadParticipants.catch(treatError);
+
+    function callbackParticipants(response) {
+        participants = response.data;
+        renderParticipants();
+    }
 
     function renderParticipants() {
-
         const renderParticipants = document.querySelector(".participants");
         renderParticipants.innerHTML = "";
 
         for (let i = 0; i < participants.length; i++) {
-            renderParticipants.innerHTML +=`
-            <div class="participants">
+            renderParticipants.innerHTML += `
+            <div class="people">
             <ion-icon name="person-circle"></ion-icon>
             <span>${participants[i].name}</span>
-            </div>`  
+            </div>`
+        }
     }
 }
-    }
 
 

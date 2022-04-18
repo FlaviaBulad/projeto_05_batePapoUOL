@@ -52,6 +52,7 @@ strong {
   background-color:#fff;
   z-index: 3;
   margin-left:120px;
+  overflow:scroll;
 }
 
 .menu-title{
@@ -62,6 +63,7 @@ font-size: 16px;display: flex;
 align-items: center;
 text-align: center;
 color: #000000;
+
 }
 .everyone{
   display: flex;
@@ -80,20 +82,23 @@ color: #000000;
 margin-left:10px;
 }
 .participants{
+  
+}
+
+.people{
   display: flex;
   align-items: center;
   padding-left: 10px;
   margin-bottom: 5px;
-
 }
-.participants span{
+.people span{
   font-weight: 400;
  font-size: 16px;
  color: #000000;
  margin-left:10px;
 }
 
-.participants ion-icon{
+.people ion-icon{
     font-size:20px;
     margin-left:20px;
   }
